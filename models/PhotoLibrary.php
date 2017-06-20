@@ -87,16 +87,14 @@ class PhotoLibrary extends \yii\db\ActiveRecord
     {
       return $this->hasOne(Province::className(),['PROVINCE_ID'=>'province_id']);
     }
-    
+
     public function getPhotcover($ref){
-        
+
         $model = Uploads::find()
                 ->where(['ref' => $ref])
                 ->orderBy(['(upload_id)' => SORT_ASC])
                 ->one();
-        
-        return \yii\helpers\Html::img('@web/photolibrarys/'.$ref.'/'.$model['real_filename'],['class'=>'img-responsive img-thumbnail']);
-       
+        return \yii\helpers\Html::img('@web/photolibrarys/'.$ref.'/'.$model['real_filename'],['class'=>'img-responsive']);
     }
 
 }

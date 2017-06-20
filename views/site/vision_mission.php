@@ -10,9 +10,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-vision_mission">
     <h1><?= Html::encode($this->title) ?></h1>
 
-<div class="well">
+<div class="well" align="center">
     <p>
-        <img src="images/vision_mission.png">
+        <img src="images/vision_mission.png" class="img-thumbnail">
     </p>
 </div>
 </div>

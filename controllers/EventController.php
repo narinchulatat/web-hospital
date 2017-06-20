@@ -93,17 +93,17 @@ class EventController extends Controller
           $model->created_date = $date;
 
           if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-              
+
 //              echo $model->created_date;
 //              echo "<br/>";
 //              echo $model->end;
-//              
+//
 //              exit();
-              
+
               if($model->save()){
                   return $this->redirect(['admin', 'id' => $model->id]);
               }
-              
+
           } else {
               return $this->renderAjax('create', [
                   'model' => $model,

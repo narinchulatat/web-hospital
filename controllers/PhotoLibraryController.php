@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 use yii\helpers\Url;
-use yii\helpers\html;
+use yii\helpers\Html;
 use yii\web\UploadedFile;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
@@ -59,7 +59,6 @@ class PhotoLibraryController extends Controller
     {
         $searchModel = new PhotoLibrarySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

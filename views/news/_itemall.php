@@ -23,9 +23,11 @@ if(@is_file($basePath.$pdfUrl)){
       <img class="media-object" src="<?= $img; ?>" style="width: 40px; height: 40px;" alt="...">
   </div>
   <div class="media-body">
-    <a href="<?= Url::to(['/news/view', 'id'=>$model->id]); ?>">
-    <h5 class="media-heading"><p class="text-info"><?php echo $model->title; ?> <span class="badge">อ่าน : <?php echo $model->view; ?></span></p></h5>
+    <a href="<?= Url::to(['/news/view', 'id'=>$model->id]); ?>" style="text-decoration: none;">
+    <h5 class="media-heading"><p class="text-info"><?php echo $model->title; ?> <span class="badge"> <i class="fa fa-eye" aria-hidden="true"></i> : <?php echo $model->view; ?></span></p></h5>
   </a>
-    <i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $model->post_date; ?>
-  </div>
+    <small><i class="fa fa-clock-o"></i> <?php echo $model->post_date; ?> <i class="fa fa-user"></i> : Admin </small>
+
+</div>
+<p />
 </div>

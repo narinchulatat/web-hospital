@@ -37,4 +37,3 @@ function eMouseremove(event, element) {
     $(".tooltipevent").css('z-index', 8);
     $('.tooltipevent').remove();
 }
-

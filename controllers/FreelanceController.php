@@ -284,9 +284,4 @@ class FreelanceController extends Controller
     private function removeUploadDir($dir){
         BaseFileHelper::removeDirectory(Freelance::getUploadPath().$dir);
     }
-
-
-
-
-
 }

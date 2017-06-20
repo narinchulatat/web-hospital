@@ -1,5 +1,14 @@
-body{ font-family: "Kanit", sans-serif; #map {height: 100%;}
+/*body{ font-family: "THSarabunNew", sans-serif; #map {height: 100%;}
+}*/
+body {
+    font-family: 'THSarabunNew', sans-serif; #map {height: 100%;}
 }
+
+.bimg{
+    width:100%;
+    background:url('#');
+}
+
 .divshadow {
     box-shadow:1px 1px 1px 0px #777;
     border-radius: 5px;
@@ -9,7 +18,7 @@ body{ font-family: "Kanit", sans-serif; #map {height: 100%;}
  hr {margin: 7px 0;}
  .f12p {font-size:12px;}
  .f14p {font-size:14px;}
- 
+
 
  .footer1 {
     background-color: #013e5f;
@@ -47,3 +56,36 @@ footer .footer-below {
   line-height: 45px;
 }
 
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#bar{
+  width: 0%;
+  max-width: 100%;
+  height: 4px;
+  background: #00A65A;
+}
+#progressBar{
+  width: 100%;
+  background: #EDEDED;
+}
+
+/* ส่วนกำหนดสำหรับ แสดง iframe  */
+div#myiframe_position1{
+    position:relative;
+    margin:auto;
+    display:block;
+    width:100%; /*ความกว้างส่วนของเนื้อหา iframe ที่ต้องการแสดง*/
+    height:300px; /* ความสูงส่วนของเนื้อหา iframe ที่ต้องการแสดง */
+    overflow:hidden;
+}
+/* ส่วนกำหนด สำหรับ iframe */
+div#myiframe_position1 iframe{
+    position:absolute;
+    display:block;
+    float:left;
+    margin-top:-250px; /* ปรับค่าของ iframe ให้ขยับขึ้นบนตามตำแหน่งที่ต้องการ */
+    margin-left:-10px; /* ปรับค่าของ iframe ให้ขยับมาด้านซ้ายตามตำแหน่งที่ต้องการ */
+}

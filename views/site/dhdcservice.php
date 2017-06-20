@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="well">
     <p>
-      <li><a href="#" target="_blank">DHDC <img src="images/dhdc.jpg"></a></li>
+      <li><a href="#" target="_blank">DHDC <img class="img-responsive" src="images/dhdc.jpg"></a></li>
     </p>
 </div>
 </div>

@@ -18,7 +18,7 @@ class NewsSearch extends News {
     public function rules() {
         return [
             [['id', 'cat_id', 'view'], 'integer'],
-            [['title', 'detail', 'post_date', 'update_date'], 'safe'],
+            [['title', 'detail', 'post_date', 'update_date','docs','ref'], 'safe'],
         ];
     }
 
@@ -66,7 +66,10 @@ class NewsSearch extends News {
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+                ->andFilterWhere(['like', 'docs', $this->docs])
+                ->andFilterWhere(['like', 'ref', $this->ref])
                 ->andFilterWhere(['like', 'detail', $this->detail]);
+
 
         return $dataProvider;
     }

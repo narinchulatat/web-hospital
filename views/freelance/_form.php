@@ -26,14 +26,13 @@ use kartik\date\DatePicker;
     'pluginOptions' => [
         'initialPreview'=>$model->initialPreview($model->covenant,'covenant','file'),
         'initialPreviewConfig'=>$model->initialPreview($model->covenant,'covenant','config'),
-        'allowedFileExtensions'=>['zip','pdf'],
+        'allowedFileExtensions'=>['pdf','doc','docx','xls','xlsx'],
         'showPreview' => true,
         'showCaption' => true,
         'showRemove' => true,
         'showUpload' => false
      ]
     ]); ?>
-
 
     <div class="form-group">
         <?= Html::submitButton('<i class="glyphicon glyphicon-plus"></i> '.($model->isNewRecord ? 'Create' : 'Update'), ['class' => ($model->isNewRecord ? 'btn btn-success' : 'btn btn-primary').' btn-lg btn-block']) ?>

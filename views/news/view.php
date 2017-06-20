@@ -2,12 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
+use yii\helpers\HtmlPurifier;
+use yii\models\News;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
 
-$this->title = $model->title;
-//$this->params['breadcrumbs'][] = ['label' => 'ข่าว', 'url' => ['index']];
+//$this->title = $model->title;
+// $this->params['breadcrumbs'][] = ['label' => 'ข่าว', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
@@ -15,7 +18,20 @@ $this->params['breadcrumbs'][] = $this->title;
   $model->view = $view;
   $model->save();
 ?>
+<?php
+$baseUrl = Yii::getAlias('@web');
+$basePath = Yii::getAlias('@webroot');
 
+// echo $basePath.'/uploaded/news/icons/'.$model->id.'.png';
+
+$iconUrl = '/uploaded/news/icons/'.$model->id.'.png';
+
+if(@is_file($basePath.$iconUrl)){
+  $img = $baseUrl.$iconUrl;
+}else{
+  $img = $baseUrl.'/uploaded/news/icons/default.png';
+}
+?>
 <div class="news-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -31,11 +47,27 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     <?php } ?>
-
     <div class="well">
-      <?= $model->detail; ?>
+    <div class="list-group">
+      <div class="list-group-item">
+        <div class="row-picture">
+          <img class="media-object" src="<?= $img; ?>" alt="Generic placeholder image"><p />
+        </div>
+        <div class="row-content">
+          <h4 class="list-group-item-heading"><?= $this->title = $model->title; ?></h4>
+          <p class="list-group-item-text"><?= $model->detail; ?></p>
+          <?= DetailView::widget([
+              'model' => $model,
+              'template'=>'<tr><th>{label}</th><td><i class="glyphicon glyphicon-file"></i> {value}</td></tr>',
+              'attributes' =>
+              [
+                  ['attribute'=>'docs','value'=>$model->listDownloadFiles('docs'),'format'=>'html'],
+              ],
+          ]) ?>
+          <small><p class="list-group-item-text"><i class="fa fa-clock-o"></i> : <?= $model->post_date; ?> <i class="fa fa-user"></i> : Admin <span class="badge"> <i class="fa fa-eye" aria-hidden="true"></i> <?= $model->view; ?></span></p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
     </div>
-      <p>วันที่ประกาศข่าว : <?= $model->post_date; ?>
-      <p>ปรับปรุงล่าสุด : <?= $model->update_date; ?>
-      <p>จำนวนการเข้าชม : <span class="badge"> <?= $model->view; ?></span>
+  </div>
 </div>

@@ -8,11 +8,11 @@ use yii\helpers\HtmlPurifier;
 $baseUrl = Yii::getAlias('@web');
 $basePath = Yii::getAlias('@webroot');
 
-//echo $basePath.'\uploads'.$model->id.'.pdf';
+// echo $basePath.'/uploaded/news/icons/'.$model->id.'.png';
 
-$iconUrl = '/uploaded/news/icons'.$model->id.'.png';
+$iconUrl = '/uploaded/news/icons/'.$model->id.'.png';
 
-if(@is_file($basePath.$pdfUrl)){
+if(@is_file($basePath.$iconUrl)){
   $img = $baseUrl.$iconUrl;
 }else{
   $img = $baseUrl.'/uploaded/news/icons/default.png';
@@ -23,9 +23,13 @@ if(@is_file($basePath.$pdfUrl)){
       <img class="media-object" src="<?= $img; ?>" style="width: 40px; height: 40px;" alt="...">
   </div>
   <div class="media-body">
-    <a href="<?= Url::to(['/news/view', 'id'=>$model->id]); ?>">
-    <h5 class="media-heading"><?php echo $model->title; ?> <span class="badge">อ่าน : <?php echo $model->view; ?></span></h5>
+    <a href="<?= Url::to(['/news/view', 'id'=>$model->id]); ?>" style="text-decoration: none;" target="_blank">
+    <h5 class="media-heading"><?php echo $model->title; ?> <span class="badge"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $model->view; ?></span></h5>
   </a>
-    <i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $model->post_date; ?>
+    <!-- <i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $model->post_date; ?> -->
+    <small class="text-muted">
+    <i class="fa fa-clock-o"></i> <?php echo $model->post_date; ?>
+    <i class="fa fa-user"></i> Admin</small>
   </div>
+  <p />
 </div>

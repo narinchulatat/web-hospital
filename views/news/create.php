@@ -8,7 +8,7 @@ use dosamigos\ckeditor\CKEditor;
 /* @var $model app\models\News */
 
 $this->title = 'เพิ่มข่าว';
-$this->params['breadcrumbs'][] = ['label' => 'ข่าว', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ข่าว', 'url' => ['admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-create">

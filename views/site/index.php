@@ -7,66 +7,63 @@ use kartik\tabs\TabsX;
 use yii\helpers\Url;
 use evgeniyrru\yii2slick\Slick;
 use yii\bootstrap\Modal;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 $this->title = 'โรงพยาบาลน้ำยืน อำเภอน้ำยืน จังหวัดอุบลราชธานี';
+// register css files
+$this->registerCssFile("@web/owl.carousel/owl-carousel/owl.carousel.css");
+// $this->registerCssFile("@web/owl.carousel/owl-carousel/owl.theme.css");
+
+//register js files
+$this->registerJsFile("@web/owl.carousel/owl-carousel/owl.carousel.min.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile("@web/js/index.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+// popup css
+$this->registerCssFile("http://www.jacklmoore.com/colorbox/example1/colorbox.css");
+// popup js
+// $this->registerJsFile("http://code.jquery.com/jquery-3.2.1.min.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile("http://www.jacklmoore.com/colorbox/jquery.colorbox.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+
 ?>
 <div class="container">
     <div class="site-index">
-        <!-- begin carousel -->
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="images/image1.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/image2.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/image3.jpg">
-                </div>
-            </div>
-        </div>
-        <!-- </div> -->
-        <!-- Controls -->
+      <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item"><?= Html::img('@web/images/1.jpg', ['alt' => 'ทดสอบ']) ?></div>
+        <div class="item"><?= Html::img('@web/images/2.jpg', ['alt' => 'ทดสอบ']) ?></div>
+        <div class="item"><?= Html::img('@web/images/3.jpg', ['alt' => 'ทดสอบ']) ?></div>
+        <div class="item"><?= Html::img('@web/images/4.jpg', ['alt' => 'ทดสอบ']) ?></div>
+        <div class="item"><?= Html::img('@web/images/5.jpg', ['alt' => 'ทดสอบ']) ?></div>
+    </div>
         <p />
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="col-md-9">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-bullhorn fa-flip-horizontal"></i> ข่าวประชาสัมพันธ์</h3>
                     </div>
                     <?php
-                    $newsall = $this->render('newsall', [
-                        'dataProvider' => $dataProvider
-                    ]);
                     $newspurchase = $this->render('newspurchase', [
                         'newspurchase' => $newspurchase
                     ]);
                     $newswork = $this->render('newswork', [
                         'newswork' => $newswork
                     ]);
+                    $newsall = $this->render('newsall', [
+                        'dataProvider' => $dataProvider
+                    ]);
                     $items = [
-                        [
-                            'label' => '<i class="glyphicon glyphicon-list"></i> ข่าวทั่วไป',
-                            'content' => $newsall,
-                            'active' => true
-                        ],
                         [
                             'label' => '<i class="glyphicon glyphicon-list"></i> ข่าวรับสมัครงาน',
                             'content' => $newswork,
+                            'active' => true
                         ],
                         [
                             'label' => '<i class="glyphicon glyphicon-list"></i> ข่าวจัดซื้อจัดจ้าง',
                             'content' => $newspurchase,
+                        ],
+                        [
+                            'label' => '<i class="glyphicon glyphicon-list"></i> ข่าวทั่วไป',
+                            'content' => $newsall,
                         ],
                     ];
                     echo TabsX::widget([
@@ -76,20 +73,6 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                         'encodeLabels' => false
                     ]);
                     ?>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-picture-o" aria-hidden="true"></i> อัลบั้มภาพ</h3>
-                    </div>
-                    <div class="panel-body">
-                        <?php
-                        echo ListView::widget([
-                            'dataProvider' => $dataProvider2,
-                            'itemView' => '/photo-library/_item',
-                            'layout' => '{items}{pager}',
-                        ]);
-                        ?>
-                    </div>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -114,63 +97,58 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-chain-broken" aria-hidden="true"></i> ระบบ Intranet</h3>
+                        <h3 class="panel-title"><i class="fa fa-picture-o" aria-hidden="true"></i> อัลบั้มภาพ</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?php
+                        echo ListView::widget([
+                            'dataProvider' => $dataProvider2,
+                            'itemView' => '/photo-library/_item',
+                            'layout' => '{items}',
+                        ]);
+                        ?>
+                        <a href="<?= Url::to(['photo-library/index']); ?>" class="pull-right wow fadeInDown animated btn btn-primary animated" style="visibility: visible; animation-name: fadeInDown;"> เพิ่มเติม </a>
+                        <!-- <a class="pull-right wow fadeInDown animated btn btn-primary animated" href="/album" style="visibility: visible; animation-name: fadeInDown;"> เพิ่มเติม </a> -->
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-chain-broken" aria-hidden="true"></i> วิดีโอ</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-6">
+                              <div class="panel-body">
+                                  <div class="embed-responsive embed-responsive-16by9">
+                                      <iframe class="embed-responsive-item" src="https://www.youtube.com//embed/-vZ_XkHHG30"></iframe>
+                                  </div>
+                              </div>
+                          </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="bg-info">
-                                    <div class="widget navy-bg p-lg text-center">
-                                        <div class="m-b-md">
-                                            <h2 class="font-bold no-margins">
-                                                ระบบจองห้องประชุม
-                                            </h2>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-md btn-success" href="#"> คลิกเข้าสู่ระบบ</a>
-                                        </div>
+                                <div class="panel-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZEwumhAiZVs"></iframe>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="bg-info">
-                                    <div class="widget lazur-bg p-lg text-center">
-                                        <div class="m-b-md">
-                                            <h2 class="font-bold no-margins">
-                                                ระบบขอใช้รถส่วนกลาง
-                                            </h2>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-md btn-danger" href="#"> คลิกเข้าสู่ระบบ</a>
-                                        </div>
+                                <div class="panel-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/pBT4hqMNhio"></iframe>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="bg-info">
-                                    <div class="widget red-bg p-lg text-center">
-                                        <div class="m-b-md">
-                                            <h2 class="font-bold no-margins">
-                                                ระบบจัดการความเสี่ยง
-                                            </h2>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-md btn-warning" href="#"> คลิกเข้าสู่ระบบ</a>
-                                        </div>
+                                <div class="panel-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/m0I39tjTsJA"></iframe>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="bg-info">
-                                    <div class="widget blue-bg p-lg text-center">
-                                        <div class="m-b-md">
-                                            <h2 class="font-bold no-margins">
-                                                ระบบบุคลากร
-                                            </h2>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="btn btn-md btn-primary" href="#"> คลิกเข้าสู่ระบบ</a>
-                                        </div>
+                                <div class="panel-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe> -->
                                     </div>
                                 </div>
                             </div>
@@ -179,16 +157,16 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-md-4">
+                <div class="col-md-3">
                     <!--<div class="panel-group">-->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-user-md" aria-hidden="true"></i> ผู้บริหาร</h4></div>
                         <div class="panel-body">
                             <div class="thumbnail" align="center">
-                                <img src="images/boss_man-128.png" alt="...">
+                                <img src="images/boss_man-128.jpg" alt="ผู้อำนวยการโรงพยาบาลน้ำยืน">
                                 <div class="caption">
                                     <h4>นพ.ชัยวัฒน์  ดาราสิชฌน์</h4>
-                                    <h4>ผู้อำนวยการโรงพยาบาลน้ำยืน</h4>
+                                    <h5>ผู้อำนวยการโรงพยาบาลน้ำยืน</h5>
                                 </div>
                             </div>
                             <ul class="xoxo blogroll">
@@ -196,13 +174,14 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                         </div>
                     </div>
                     <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-xs-6 col-md-4">-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-md-4">-->
                     <!--<div class="panel-group">-->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-link" aria-hidden="true"></i> หน่วยงานที่เกี่ยวข้อง</h4></div>
                         <div class="panel-body">
                             <ul class="xoxo blogroll">
+                                <li><a href="http://namyuenhosp.in.th/webpage/mt.htm" target="_blank"> กลุ่มงานเทคนิคการแพทย์</a></li>
                                 <li><a href="http://www.ddc.moph.go.th/index.php" target="_blank"> กรมควบคุมโรค</a></li>
                                 <li><a href="http://www.moph.go.th" target="_blank"> กระทรวงสาธารณสุข</a></li>
                                 <li><a href="http://www.oic.go.th/ginfo/" target="_blank"> ฐานข้อมูลหน่วยงานภาครัฐ (GINFO²)</a></li>
@@ -215,8 +194,8 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                         </div>
                     </div>
                     <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-xs-6 col-md-4">-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-md-4">-->
                     <!--<div class="panel-group">-->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-cogs" aria-hidden="true"></i> ระบบ MIS</h4></div>
@@ -237,8 +216,8 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                         </div>
                     </div>
                     <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-xs-6 col-md-4">-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-md-4">-->
                     <!--<div class="panel-group">-->
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title"><i class="fa fa-h-square" aria-hidden="true"></i> โรงพยาบาลชุมชน</h4></div>
@@ -261,7 +240,28 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                                     <li><a href="http://www.sirinhospital.go.th/" target="_blank">โรงพยาบาลสิรินธร</a></li>
                                     <li><a href="http://www.kmhos.org/main/" target="_blank">โรงพยาบาลเขมราฐ</a></li>
                                     <li><a href="http://www.knhosp.go.th/" target="_blank">โรงพยาบาลเขื่องใน</a></li>
-                                    <li><a href="http://www.khongchiamhospital.com/" target="_blank">โรงพยาบาลโขงเจียม</a></li>
+                                    <li><a href="http://www.khongch.go.th/home/" target="_blank">โรงพยาบาลโขงเจียม</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-chain-broken" aria-hidden="true"></i> ระบบ Intranet</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <ul class="xoxo blogroll">
+                                    <li><a href="http://namyuenhosp.in.th/webboard/index.php" target="_blank">ระบบ webboard</a></li>
+                                    <li><a href="http://nyintranetnew/NYITCENTER/indexmain.aspx" target="_blank">ระบบ Intranet</a></li>
+                                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScu5oxtNPn9aJ9Lv0N5-xUjutlEUueF6pflOgK_wf9NjyiK2Q/viewform" target="_blank">แบบประเมินธรรมาภิบาล</a></li>
+                                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfrk7s5PwzkQF9qkjvCGiTbejhkrxdO5d1BKa7CjJDPRYV8MQ/viewform" target="_blank">แบบประเมินความผูกพันต่อองค์กร</a></li>
+                                    <!-- <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeLCQJJinlBtMLNltoTI0OuUs_39tDegdVLDtl9uFHpNwcQ-A/viewform#responses" target="_blank">แบบวัดคุณภาพชีวิตของพยาบาล</a></li> -->
+                                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeLCQJJinlBtMLNltoTI0OuUs_39tDegdVLDtl9uFHpNwcQ-A/viewform" target="_blank">แบบวัดคุณภาพชีวิตของพยาบาล</a></li>
+                                    <li><a href="#" target="_blank">ระบบจองห้องประชุม</a></li>
+                                    <li><a href="#" target="_blank">ระบบขอใช้รถส่วนกลาง</a></li>
+                                    <li><a href="#" target="_blank">ระบบจัดการความเสี่ยง</a></li>
+                                    <li><a href="#" target="_blank">ระบบบุคลากร</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -270,7 +270,8 @@ $this->title = 'โรงพยาบาลน้ำยืน อำเภอน
                 </div>
             </div>
         </div>
-    </div
+    </div>
+</div>
 </div>
 <?php
 $this->registerJsFile('@web/js/main.js', ['depends' => [\yii\web\JqueryAsset::className()]]);

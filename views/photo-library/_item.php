@@ -10,23 +10,22 @@ $baseUrl = Yii::getAlias('@web');
 $basePath = Yii::getAlias('@webroot');
 $time = time();
 ?>
-<!--<div class="media">
-    <div class="media-body">
-        <a href="<?= Url::to(['/photo-library/view', 'id' => $model->id]); ?>">
-            <h5 class="media-heading"><i class="fa fa-picture-o" aria-hidden="true"></i> <?php echo $model->event_name; ?></h5>
-        </a>
-        <i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $model->start_date; ?>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="thumbnail">
+            <a href="<?= Url::to(['/photo-library/view', 'id' => $model->id]); ?>" style="text-decoration: none;">
+              <div style="float: left;overflow: hidden;height: 150px;display: block;width: 100%;margin-bottom: 5px;border-bottom: 1px solid #eee;background: #efefef;">
+                <?= $model->getPhotcover($model->ref); ?>
+              </div>
+                <hr>
+              <div class="text-left" style="height:55px;width: 100%;overflow: hidden;">
+                <i class="fa fa-picture-o" aria-hidden="true"></i> <?php echo $model->event_name; ?>
+              </div>
+            </a>
+            <p />
+            <small class="text-muted">
+              <i class="fa fa-clock-o"></i> <?php echo $model->start_date; ?> <i class="fa fa-user"></i> Admin
+            </small>
+        </div>
     </div>
-</div>-->
-
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <?=$model->getPhotcover($model->ref);?>
-      <div class="caption">
-        <a href="<?= Url::to(['/photo-library/view', 'id' => $model->id]); ?>">
-            <i class="fa fa-picture-o" aria-hidden="true"></i> <?php echo $model->event_name; ?>
-        </a>
-      </div>
-    </div>
-  </div>
+</div>
